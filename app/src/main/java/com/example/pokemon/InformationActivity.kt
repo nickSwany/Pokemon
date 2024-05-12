@@ -20,12 +20,15 @@ class InformationActivity : AppCompatActivity() {
         binding = ActivityInformationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val pokemonAge = intent.getIntExtra(EXTRA_ORDER, 0)
+
         binding.apply {
             tvNamePokemon.text = intent.getStringExtra(EXTRA_NAME)!!.capitalize()
             weightNumber.text = intent.getIntExtra(EXTRA_WEIGHT, 0).toString()
             heightNumber.text = intent.getIntExtra(EXTRA_HEIGHT,0).toString()
-            orderNumber.text = intent.getIntExtra(EXTRA_ORDER,0).toString()
+            orderNumber.text = pokemonAge.toString()
             experienceNumber.text = intent.getIntExtra(EXTRA_EXPERIENCE,0).toString()
+            year.text = getAgeText(pokemonAge)
 
             btBack.setOnClickListener {
                 finish()
@@ -36,4 +39,12 @@ class InformationActivity : AppCompatActivity() {
             .load(intent.getStringExtra(EXTRA_IMAGE))
             .into(binding.imageView)
     }
+
+     private fun getAgeText(order: Int) : String {
+         return when {
+             order % 10 == 1 && order % 100 != 11 -> "год"
+             order % 10 in 2..4 && (order % 100 < 10 || order % 100 >= 20) -> "года"
+             else -> "лет"
+         }
+     }
 }
