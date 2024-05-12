@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Pokemon</string>
+    <string name="name_pokemon">Name pokemon</string>
+    <string name="next_10">Следующие 10</string>
+    <string name="last_10">Предыдущие 10</string>
 </resources>

@@ -1,11 +1,11 @@
 package com.example.pokemon
 
-import android.widget.EditText
 import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.Path
 
 interface Apiservice {
-
-    @GET("")
-    suspend fun searchPokemon(@Query("") text: String) : PokemonSearchResponce
+    @GET("pokemon/{id}")
+    suspend fun getInformationPokemon(
+        @Path("id") id: Int,
+    ) : Pokemon
 }
